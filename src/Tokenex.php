@@ -23,8 +23,8 @@ class Tokenex
     public function tokenize($data, $tokenScheme = TokenScheme::GUID)
     {
         $requestParams = [
-            TokenParams::RequestParams['Data']          => $data,
-            TokenParams::RequestParams['TokenScheme']   => $tokenScheme
+            RequestParams::Data => $data,
+            RequestParams::TokenScheme => $tokenScheme
         ];
 
         return $this->sendRequest(TokenAction::Tokenize, $requestParams);
@@ -33,8 +33,8 @@ class Tokenex
     public function tokenize_from_encrypted_value($encrypted_data, $token_scheme)
     {
         $requestParams = [
-            TokenParams::RequestParams['EncryptedData'] => $encrypted_data,
-            TokenParams::RequestParams['TokenScheme'] => $token_scheme
+            RequestParams::EncryptedData => $encrypted_data,
+            RequestParams::TokenScheme => $token_scheme
         ];
 
         return $this->sendRequest(TokenAction::TokenizeFromEncryptedValue, $requestParams);
@@ -43,7 +43,7 @@ class Tokenex
     public function detokenize($token)
     {
         $requestParams = [
-            TokenParams::RequestParams['Token'] => $token
+            RequestParams::Token => $token
         ];
 
         return $this->sendRequest(TokenAction::Detokenize, $requestParams);
@@ -52,7 +52,7 @@ class Tokenex
     public function validate_token($token)
     {
         $requestParams = [
-            TokenParams::RequestParams['Token'] => $token
+            RequestParams::Token => $token
         ];
 
         return $this->sendRequest(TokenAction::ValidateToken, $requestParams);
@@ -61,7 +61,7 @@ class Tokenex
     public function delete_token($token)
     {
         $requestParams = [
-            TokenParams::RequestParams['Token'] => $token
+            RequestParams::Token => $token
         ];
 
         return $this->sendRequest(TokenAction::DeleteToken, $requestParams);
@@ -71,8 +71,8 @@ class Tokenex
     {
         return array_merge(
             [
-                TokenParams::RequestParams['APIKey']    => $this->api_key,
-                TokenParams::RequestParams['TokenExID'] => $this->id
+                RequestParams::APIKey => $this->api_key,
+                RequestParams::TokenExID => $this->id
             ],
             $data
         );
