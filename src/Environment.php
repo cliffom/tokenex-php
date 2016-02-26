@@ -2,6 +2,8 @@
 
 namespace Cliffom\Tokenex;
 
+use GuzzleHttp\Client;
+
 class Environment
 {
     protected $api_base_url;
@@ -32,27 +34,17 @@ class Environment
     protected function sendRequest($action, $data)
     {
         $url = $this->api_base_url . $action['Name'];
-        $json = json_encode($this->getRequestArray($data));
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: '.strlen($json),
-                'Accept: application/json')
+        $httpClient = new Client();
+        $response = $httpClient->request('POST',
+            $url,
+            ['json' => $this->getRequestArray($data)]
         );
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result = $response->getBody();
 
-        //call web service
-        $result = curl_exec($ch);
         //decode result
         $jsonResult = json_decode($result, true);
-        if (!$this->isValidResponse($jsonResult)) {
-
-        }
+        $this->isValidResponse($jsonResult);
 
         return $jsonResult[$action['Key']];
     }
