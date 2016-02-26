@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+    tokenex:
+        image: cliffom/php
+        environment:
+            TOKENEX_API_BASE_URL: ${TOKENEX_API_BASE_URL}
+            TOKENEX_API_KEY: ${TOKENEX_API_KEY}
+            TOKENEX_ID: ${TOKENEX_ID}
+        volumes:
+            - .:/php
+        command: vendor/bin/phpspec run
