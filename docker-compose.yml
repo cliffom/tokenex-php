@@ -9,4 +9,4 @@ services:
             TOKENEX_ID: ${TOKENEX_ID}
         volumes:
             - .:/php
-        command: vendor/bin/phpspec run
+        command: vendor/bin/phpspec run --format=pretty
