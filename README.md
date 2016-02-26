@@ -50,8 +50,8 @@ $tokenizer->delete_token($token); // true or false
 Each action call will return a reference ID that can be used to lookup a call in the TokenEx dashboard. Unsuccessful calls will also return an error describing the problem. Each can be accessed via:
 
 ```php
-var_dump($tokenizer.error); // array, empty if no errors
-var_dump($tokenizer.reference_number); // string
+var_dump($tokenizer->error); // array, empty if no errors
+var_dump($tokenizer->reference_number); // string
 ```
 
 ## Development
