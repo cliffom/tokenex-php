@@ -4,9 +4,11 @@ A convenient PHP package for the TokenEx API
 
 ## Usage
 
-`composer require cliffom/tokenex`
-
+```bash
+$ composer require cliffom/tokenex
 ```
+
+```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
 use Cliffom\Tokenex\Tokenex;
