@@ -2,11 +2,14 @@
 
 namespace Cliffom\Tokenex;
 
-class Tokenex
+class Tokenizer
 {
     private $api_base_url;
     private $id;
     private $api_key;
+
+    public $error;
+    public $reference_number;
 
     public function __construct($api_base_url = '', $id = '', $api_key = '')
     {
@@ -97,10 +100,29 @@ class Tokenex
 
         //call web service
         $result = curl_exec($ch);
-
         //decode result
         $jsonResult = json_decode($result, true);
+        if (!$this->isValidResponse($jsonResult)) {
+
+        }
 
         return $jsonResult[$action['Key']];
+    }
+
+    private function isValidResponse($response)
+    {
+        $this->error = empty($response[ResponseParams::Error]) ? [] : $this->errorFromResponse($response[ResponseParams::Error]);
+        $this->reference_number = empty($response[ResponseParams::ReferenceNumber]) ? '' : $response[ResponseParams::ReferenceNumber];
+        return isset($response[ResponseParams::Success]) &&
+            $response[ResponseParams::Success] === true;
+    }
+
+    private function errorFromResponse($response)
+    {
+        $responseArray = explode(' : ', $response);
+        return [
+            'code' => intval($responseArray[0]),
+            'message' => $responseArray[1]
+        ];
     }
 }

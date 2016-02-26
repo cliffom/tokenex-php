@@ -11,14 +11,14 @@ $ composer require cliffom/tokenex
 ```php
 <?php
 require __DIR__ . '/vendor/autoload.php';
-use Cliffom\Tokenex\Tokenex;
+use Cliffom\Tokenex\Tokenizer;
 
-$tokenex = new Tokenex($TOKENEX_API_BASE_URL, $TOKENEX_ID, $TOKENEX_API_KEY);
+$tokenizer = new Tokenizer($TOKENEX_API_BASE_URL, $TOKENEX_ID, $TOKENEX_API_KEY);
 
-$token = $tokenex->token_from_ccnum(4242424242424242);
-var_dump($tokenex->validate_token($token));
+$token = $tokenizer->token_from_ccnum(4242424242424242);
+var_dump($tokenizer->validate_token($token));
 var_dump($token);
-var_dump($tokenex->delete_token($token));
+var_dump($tokenizer->delete_token($token));
 ```
 
 ## Development
