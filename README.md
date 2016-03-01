@@ -1,4 +1,4 @@
-# Tokenex [![Build Status](https://travis-ci.org/cliffom/tokenex-php.svg?branch=master)](https://travis-ci.org/cliffom/tokenex-php)
+# Tokenex [![Build Status](https://travis-ci.org/cliffom/tokenex-php.svg?branch=master)](https://travis-ci.org/cliffom/tokenex-php) [![Circle CI](https://circleci.com/gh/cliffom/tokenex-php.svg?style=svg)](https://circleci.com/gh/cliffom/tokenex-php)
 
 A convenient PHP package for the TokenEx API
 
